@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* Theme tokens — :root = light, .dark = dark (class on <html>) */
+:root {
+  --bg-primary: #f5f5f0;
+  --bg-secondary: #eeeeea;
+  --bg-card: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --border: #dddddd;
+  --accent: #f0a500;
+  --on-accent: #111111;
+  --positive: #22c55e;
+  --negative: #ef4444;
+  --bg-row: #eeeeea;
+  --bg-row-hover: #e5e5e0;
+  --bg-input: #ffffff;
+  --placeholder: #888888;
+  --chart-line: #111111;
+  --shadow-card-inset: inset 0 1px 0 rgba(0, 0, 0, 0.06);
+  --font-serif-display: "DM Serif Display", Georgia, serif;
+  --font-mono-data: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.dark {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #1a1a1a;
+  --text-primary: #e8e8e8;
+  --text-secondary: #888888;
+  --border: #2a2a2a;
+  --accent: #f0a500;
+  --on-accent: #0a0a0a;
+  --positive: #22c55e;
+  --negative: #ef4444;
+  --bg-row: #141414;
+  --bg-row-hover: #1f1f1f;
+  --bg-input: #111111;
+  --placeholder: #555555;
+  --chart-line: #ffffff;
+  --shadow-card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+@theme inline {
+  --color-app: var(--bg-primary);
+  --color-sidebar: var(--bg-secondary);
+  --color-card: var(--bg-card);
+  --color-fg: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-edge: var(--border);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-row: var(--bg-row);
+  --color-row-hover: var(--bg-row-hover);
+  --color-input: var(--bg-input);
+  --font-serif-display: var(--font-serif-display);
+  --font-mono-data: var(--font-mono-data);
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-mono-data);
+  }
+}
+
+@layer utilities {
+  .bg-positive-soft {
+    background-color: color-mix(in srgb, var(--positive) 16%, transparent);
+  }
+  .bg-negative-soft {
+    background-color: color-mix(in srgb, var(--negative) 16%, transparent);
+  }
+  .shadow-card-inset {
+    box-shadow: var(--shadow-card-inset);
+  }
+}
+
+/* KPI / card entrance */
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card-enter {
+  animation: card-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes chart-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-chart-enter {
+  animation: chart-enter 0.65s ease-out 0.35s forwards;
+  opacity: 0;
+}
+
+@keyframes route-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.route-fade {
+  animation: route-fade-in 200ms ease-out forwards;
+}
